@@ -1,0 +1,9 @@
+<% form_for(@recipe) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.text_area :contents %>
+  </p>
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+<% end %>

@@ -1,0 +1,23 @@
+body {
+  background: beige;
+  font-family: Calibri;
+}
+
+body#header {
+  font-family: Californian;
+/*  background-image: ;*/
+}
+
+a {
+  text-decoration: none;
+}
+
+.recipe_name {
+  font-weight: bold;
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+
+td.recipe_contents {
+  width: 70%;
+}

@@ -1,0 +1,11 @@
+<div class="recipe">
+  <tr>
+    <td class="recipe_contents"><%= prettify(recipe.contents) %></td>
+  </tr>
+  <tr style="padding-bottom:20px">
+    <td style="padding-bottom: 25px">
+      <%= link_to 'Edit', edit_recipe_path(recipe) %> | 
+      <%= link_to '&times;', recipe, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+  </tr>
+</div>

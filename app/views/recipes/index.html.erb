@@ -1,0 +1,6 @@
+<h2>New recipe</h2><br />
+<%= render :partial => 'form' %>
+<h1>Recipes</h1>
+<table>
+  <%= render :partial => 'recipe', :collection => @recipes %>
+</table>
