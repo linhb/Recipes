@@ -1,10 +1,16 @@
+<link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption' rel='stylesheet' type='text/css'>
 <head>
   <title>Recipe app</title>
   <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
   <div id="header">
-    My recipe app
+    <% form_tag recipes_path, :method => :get do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag "Find" %>
+    <% end %>
   </div>
-  <%= yield %>
+  <div id="main">
+    <%= yield %>
+  </div>
 </body>

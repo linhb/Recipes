@@ -1,6 +1,12 @@
 <h2>New recipe</h2><br />
 <%= render :partial => 'form' %>
 <h1>Recipes</h1>
-<table>
-  <%= render :partial => 'recipe', :collection => @recipes %>
-</table>
+<% if @recipes.present? %>
+  <%= will_paginate @recipes %>
+  <div id="recipes">
+    <%= render :partial => 'recipe', :collection => @recipes %>
+  </div>
+  <%= will_paginate @recipes %>
+<% else %>
+  No recipes found.
+<% end %>

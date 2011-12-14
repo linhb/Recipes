@@ -1,11 +1,10 @@
 <div class="recipe">
-  <tr>
-    <td class="recipe_contents"><%= prettify(recipe.contents) %></td>
-  </tr>
-  <tr style="padding-bottom:20px">
-    <td style="padding-bottom: 25px">
+  <div class="recipe_contents">
+    <p><%= recipe.id %>. </p>
+    <p><%= prettify(recipe.contents) %></p>
+    <p>
       <%= link_to 'Edit', edit_recipe_path(recipe) %> | 
       <%= link_to '&times;', recipe, :confirm => 'Are you sure?', :method => :delete %>
-    </td>
-  </tr>
+    </p>
+  </div>
 </div>

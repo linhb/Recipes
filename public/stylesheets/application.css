@@ -1,15 +1,62 @@
+/*@font-face {
+  font-family: Convergence;
+  src: url("http://fonts.googleapis.com/css?family=Convergence");
+}
+*/
 body {
-  background: beige;
-  font-family: Calibri;
+  background: #FFEFD5;
+  font-family: "PT Sans Caption", Calibri;
+  text-align: center;
+  color: #8B4726;
 }
 
-body#header {
-  font-family: Californian;
-/*  background-image: ;*/
+body #header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #FCD59C;
+  padding: 15px 0 0 0;
+} 
+
+body #main {
+  width: 70%;
+  margin: 70px auto;  
 }
 
 a {
+  color: #CD6839;
   text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited {
+  color: #DB9370;
+}
+
+button {
+  
+}
+
+form#new_recipe textarea {
+  width: 450px;
+}
+
+.pagination .current {
+  font-weight: bold;
+  padding: 4px;
+  background: #CD6839;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+#recipes {
+}
+
+.recipe {
+  border: 2px solid #CDAD00;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .recipe_name {
@@ -18,6 +65,5 @@ a {
   padding-bottom: 10px;
 }
 
-td.recipe_contents {
-  width: 70%;
+.recipe_contents {
 }
