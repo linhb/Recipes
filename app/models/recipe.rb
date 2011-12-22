@@ -5,7 +5,7 @@ class Recipe < ActiveRecord::Base
     if keyword.blank?
       scoped(:conditions => {})
     else
-      scoped(:conditions => ["contents LIKE ?", "%#{keyword}%"])
+      scoped(:conditions => ["name LIKE ?", "%#{keyword}%"])
     end
   end
 end

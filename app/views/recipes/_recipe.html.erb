@@ -1,10 +1,13 @@
 <div class="recipe">
   <div class="recipe_contents">
     <p><%= recipe.id %>. </p>
-    <p><%= prettify(recipe.contents) %></p>
+    <div class='recipe_name'>
+      <%= recipe.name.try(:titleize) %>
+    </div>
+    <%= raw(recipe.contents.try(:gsub, /\r\n/, '<br />')) %>
     <p>
       <%= link_to 'Edit', edit_recipe_path(recipe) %> | 
-      <%= link_to '&times;', recipe, :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to raw("&times;"), recipe, :confirm => 'Are you sure?', :method => :delete %>
     </p>
   </div>
 </div>
