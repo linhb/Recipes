@@ -20,8 +20,7 @@ class RecipesController < ApplicationController
       if @recipe.save
         flash[:success] = "Recipe saved"
       else
-        flash[:error] = "Not saved"
-        render :action => "index" and return
+        flash[:error] = @recipe.errors.full_messages.join("\n")
       end
       redirect_to recipes_path
   end

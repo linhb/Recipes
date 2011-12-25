@@ -1,8 +1,3 @@
-/*@font-face {
-  font-family: Convergence;
-  src: url("http://fonts.googleapis.com/css?family=Convergence");
-}
-*/
 body {
   background: #FFEFD5;
   font-family: "PT Sans Caption", Calibri;
@@ -10,12 +5,16 @@ body {
   color: #8B4726;
 }
 
-body #header {
-  position: fixed;
+.flash .error {
+  background-color: #FFCCCC;
+}
+
+body #search {
+/*  position: fixed;*/
   top: 0;
-  width: 100%;
+/*  width: 100%;*/
   background-color: #FCD59C;
-  padding: 15px 0 0 0;
+  padding: 5px 0;
 } 
 
 body #main {

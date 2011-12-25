@@ -1,14 +1,23 @@
-<!DOCTYPE html>
-<html>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption' rel='stylesheet' type='text/css'>
 <head>
-  <title>Recipes</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+  <title>Recipe app</title>
+  <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="flash">
+    <% flash.each do |k, v| %>
+      <div class=<%= k %>>
+        <%= v %>
+      </div>
+    <% end %>
+  </div>
+  <div id="search">
+    <%= form_tag recipes_path, :method => :get do %>
+      <%= search_field_tag :search %> 
+      <%= submit_tag "Find" %>
+    <% end %>
+  </div>
+  <div id="main">
+    <%= yield %>
+  </div>
 </body>
-</html>
