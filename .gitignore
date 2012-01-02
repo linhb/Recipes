@@ -1,4 +1,12 @@
 .bundle
-db/*.sqlite3
+.DS_Store
 log/*.log
-tmp/
+tmp/**/*
+config/database.yml
+db/*.sqlite3
+*~
+public/system/*
+.idea/*
+public/images/R/*
+backups
+tmp/*

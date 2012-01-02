@@ -1,5 +1,12 @@
-<h2>New recipe</h2><br />
-<%= render :partial => 'form' %>
+<style>
+  #new_recipe {
+    display: none;
+  }
+</style>
+<div id="new_recipe_container">
+  <%= link_to "New recipe", "#", :onclick => "$('#new_recipe').toggle()" %>
+  <%= render :partial => 'form' %>
+<div>
 <h1>Recipes</h1>
 <% if @recipes.present? %>
   <%= will_paginate @recipes %>

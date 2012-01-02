@@ -1,6 +1,7 @@
 <link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption' rel='stylesheet' type='text/css'>
 <head>
   <title>Recipe app</title>
+  <%= javascript_include_tag :all, :cache => true %>
   <%= stylesheet_link_tag 'application' %>
 </head>
 <body>
@@ -8,6 +9,7 @@
     <% flash.each do |k, v| %>
       <div class=<%= k %>>
         <%= v %>
+        <%= link_to "&times;".html_safe, "#", :onclick => "$(this).parent().slideUp()" %>
       </div>
     <% end %>
   </div>

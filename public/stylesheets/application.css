@@ -5,14 +5,20 @@ body {
   color: #8B4726;
 }
 
+.flash .success {
+  background-color: #DFFFA5;
+}
+
 .flash .error {
   background-color: #FFCCCC;
 }
 
 body #search {
 /*  position: fixed;*/
+float: right;
   top: 0;
 /*  width: 100%;*/
+  font-size: 14px;
   background-color: #FCD59C;
   padding: 5px 0;
 } 
@@ -32,8 +38,13 @@ a:visited {
   color: #DB9370;
 }
 
-button {
-  
+button, input[type="submit"] {
+  box-shadow: 30px 40px;
+  height: 20px;
+}
+
+#new_recipe_container {
+  text-align: left;
 }
 
 form#new_recipe textarea {

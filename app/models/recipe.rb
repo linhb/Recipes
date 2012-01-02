@@ -2,6 +2,8 @@ class Recipe < ActiveRecord::Base
   validates :contents, :presence => true
   before_create :parse
   
+  has_and_belongs_to_many :ingredients, :join_table => :ingredient_inclusions
+   
   def self.search(keyword)
     if keyword.blank?
       scoped
@@ -12,7 +14,6 @@ class Recipe < ActiveRecord::Base
   
   def parse
     match = contents.match(/(.+)(\r\n(.|\n)+)/)
-    self.name = match[1]
-    self.contents = match[2]
+    self.name, self.contents = match[1..2]
   end
 end
