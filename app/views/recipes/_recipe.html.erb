@@ -2,8 +2,15 @@
   <div class="recipe_contents">
     <p><%= recipe.id %>. </p>
     <div class='recipe_name'>
-      <%= recipe.name.try(:titleize) %>
+      <%= recipe.name.titleize %>
     </div>
+    <% if (ingredients = recipe.ingredients).present? %>
+      <strong>Ingredients</strong>
+      <% ingredients.each do |i| %>
+        <p><%= i %></p>
+      <% end %>
+    <% end %>
+    <p><strong>Directions</strong></p>
     <%= raw(recipe.contents.try(:gsub, /\r\n/, '<br />')) %>
     <p>
       <%= link_to 'Edit', edit_recipe_path(recipe) %> | 

@@ -34,6 +34,7 @@ GEM
     columnize (0.3.6)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    hirb (0.6.0)
     i18n (0.5.0)
     json (1.6.3)
     linecache (0.46)
@@ -87,6 +88,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  hirb
   nokogiri
   rails (= 3.0.11)
   ruby-debug

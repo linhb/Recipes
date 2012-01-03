@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.search(params[:search]).order("created_at desc").paginate :page => params[:page], :per_page => 30 
+    @recipes = Recipe.search(params[:search]).paginate :page => params[:page], :per_page => 30 
     @recipe = Recipe.new
   end
 
@@ -19,10 +19,11 @@ class RecipesController < ApplicationController
       @recipe = Recipe.new(params[:recipe])
       if @recipe.save
         flash[:success] = "Recipe saved"
+        redirect_to recipes_path
       else
-        flash[:error] = @recipe.errors.full_messages.join("\n")
+        flash.now[:error] = @recipe.errors.full_messages.join("\n")
+        render :action => 'index'
       end
-      redirect_to recipes_path
   end
 
   def update

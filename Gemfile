@@ -29,5 +29,6 @@ gem 'RedCloth'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'ruby-debug'
+  gem 'hirb'
 #   gem 'webrat'
 end
