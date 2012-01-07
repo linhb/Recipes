@@ -16,7 +16,7 @@ body {
 body #search {
 /*  position: fixed;*/
 float: right;
-  top: 0;
+/*  top: 0;*/
 /*  width: 100%;*/
   font-size: 14px;
   background-color: #FCD59C;

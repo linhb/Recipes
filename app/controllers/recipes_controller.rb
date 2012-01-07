@@ -5,6 +5,10 @@ class RecipesController < ApplicationController
     @recipes = Recipe.search(params[:search]).paginate :page => params[:page], :per_page => 30 
     @recipe = Recipe.new
   end
+  
+  def show
+    @recipe = Recipe.find(params[:id]).scale(params[:serving])
+  end
 
   def edit
     @recipe = Recipe.find(params[:id])

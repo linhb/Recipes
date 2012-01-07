@@ -32,6 +32,7 @@ GEM
     arel (2.0.10)
     builder (2.1.2)
     columnize (0.3.6)
+    diff-lcs (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     hirb (0.6.0)
@@ -70,6 +71,14 @@ GEM
     rbx-require-relative (0.0.5)
     rdoc (3.12)
       json (~> 1.4)
+    rspec (2.7.0)
+      rspec-core (~> 2.7.0)
+      rspec-expectations (~> 2.7.0)
+      rspec-mocks (~> 2.7.0)
+    rspec-core (2.7.1)
+    rspec-expectations (2.7.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.7.0)
     ruby-debug (0.10.4)
       columnize (>= 0.1)
       ruby-debug-base (~> 0.10.4.0)
@@ -91,6 +100,7 @@ DEPENDENCIES
   hirb
   nokogiri
   rails (= 3.0.11)
+  rspec
   ruby-debug
   sqlite3
   will_paginate

@@ -1,5 +1,6 @@
 class Recipe < ActiveRecord::Base
   validates :name, :contents, :presence => true
+  validates :serving, numericality: true
   attr_accessor :parse_status, :ingredient_list
   # possible statuses: 
     # 'parsed' if entered with correct sections -> still need to parse for ingredients but just line by line
@@ -47,5 +48,17 @@ class Recipe < ActiveRecord::Base
   
   def parse_ingredients
     self.ingredients = Ingredient.parse(ingredient_list)
+  end
+  
+  def scale(new_serving)
+    new_serving ||= serving
+    copy = self.clone
+    copy.ingredients.clear
+    ratio = (new_serving.to_f / serving).to_f
+    ingredients.each do |i|
+      i.amount = ratio * i.amount
+      copy.ingredients << i
+    end
+    copy
   end
 end

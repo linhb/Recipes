@@ -5,16 +5,23 @@
       <%= recipe.name.titleize %>
     </div>
     <% if (ingredients = recipe.ingredients).present? %>
+      <%= form_tag(recipe_path(recipe.id || params[:id]), :method => :get) do %>
+        Servings: 
+        <%= text_field_tag :serving, params[:serving] || recipe.serving %>        
+        <%= submit_tag "Scale" %>
+      <% end %>
       <strong>Ingredients</strong>
       <% ingredients.each do |i| %>
-        <p><%= i %></p>
+        <p><%= raw(i) %></p>
       <% end %>
     <% end %>
     <p><strong>Directions</strong></p>
     <%= raw(recipe.contents.try(:gsub, /\r\n/, '<br />')) %>
-    <p>
-      <%= link_to 'Edit', edit_recipe_path(recipe) %> | 
-      <%= link_to raw("&times;"), recipe, :confirm => 'Are you sure?', :method => :delete %>
-    </p>
+    <% if recipe.id %>
+      <p>
+        <%= link_to 'Edit', edit_recipe_path(recipe) %> | 
+        <%= link_to raw("&times;"), recipe, :confirm => 'Are you sure?', :method => :delete %>
+      </p>
+    <% end %>
   </div>
 </div>
