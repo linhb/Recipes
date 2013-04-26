@@ -4,13 +4,13 @@
   }
 </style>
 <div id="new_recipe_container">
-  <%= link_to "New recipe", "#", :onclick => "$('.new_recipe').toggle()" %>
+  <%= link_to "New recipe", "#", onclick: "$('.new_recipe').toggle()" %>
   <%= form_for(@recipe) do |f| %>
     <strong>(NOT WORKING!) If the recipe has an Ingredients section, just dump it here:</strong>
     <p>
       <%= f.text_area :contents %>
     </p>
-    <%= f.hidden_field :parse_status, :value => "unparsed" %>
+    <%= f.hidden_field :parse_status, value: "unparsed" %>
     <p>
       <%= f.submit 'Parse this for me' %>
     </p>
@@ -21,7 +21,7 @@
       <%= f.label :name %>
     </p>
     <p>
-      <%= f.text_field :name, :required => true %>
+      <%= f.text_field :name, required: true %>
     </p>
     <p>
       <%= f.label :serving %>
@@ -39,9 +39,9 @@
       <%= f.label :contents, "Directions" %>
     </p>
     <p>
-      <%= f.text_area :contents, :required => true %>
+      <%= f.text_area :contents, required: true %>
     </p>
-    <%= f.hidden_field :parse_status, :value => "parsed" %>
+    <%= f.hidden_field :parse_status, value: "parsed" %>
     <p>
       <%= f.submit 'Save' %>
     </p>
@@ -51,7 +51,7 @@
 <% if @recipes.present? %>
   <%= will_paginate @recipes %>
   <div id="recipes">
-    <%= render :partial => 'recipe', :collection => @recipes %>
+    <%= render partial: 'recipe', collection: @recipes %>
   </div>
   <%= will_paginate @recipes %>
 <% else %>
