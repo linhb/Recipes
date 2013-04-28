@@ -1,12 +1,1 @@
-.bundle
-.DS_Store
-log/*.log
-tmp/**/*
-config/database.yml
-db/*.sqlite3
-*~
-public/system/*
-.idea/*
-public/images/R/*
-backups
-tmp/*
+/Users/linh/.gitignore
