@@ -1,15 +1,12 @@
 class Recipe < ActiveRecord::Base
-  validates :name, :contents, :presence => true
-  validates :serving, numericality: true
-  attr_accessor :parse_status, :ingredient_list
-  # possible statuses: 
-    # 'parsed' if entered with correct sections -> still need to parse for ingredients but just line by line
-    # 'unparsed' if needs parsing
-  before_create :parse
+  validates :name, :contents, presence: true
+  validates :serving, numericality: true, presence: true
   
-  has_and_belongs_to_many :ingredients, :join_table => :ingredient_inclusions
+  attr_accessor :ingredient_list
+    
+  has_many :ingredients
    
-  default_scope :order => 'created_at DESC'
+  default_scope order: 'created_at DESC'
   
   def self.search(keyword)
     if keyword.blank?
@@ -19,45 +16,30 @@ class Recipe < ActiveRecord::Base
     end
   end
   
-  def parse
-    if parse_status == "unparsed"
-      if contents.match(/\ningredients\n/i)
-        parse_with_ingredients
-      else
-        parse_no_ingredients
-      end
-    elsif parse_status == "parsed"
-      parse_ingredients
+  def parse(unparsed_contents)
+    components = recipe_components(unparsed_contents)
+    self.name, self.contents = components[:name], components[:contents]
+    self.ingredients = Ingredient.parse(components[:ingredient_list])
+    self
+  end
+  
+  def recipe_components(unparsed_contents)
+    unless @components 
+      components = unparsed_contents.strip.gsub(/\r/, "").split("\n\n", 4)
+      components = components - [components[1]] # ignore paragraph 2; it's just the Ingredients header
+      @components = Hash[[:name, :ingredient_list, :contents].zip(components)]
     end
-  end
-  
-  def parse_with_ingredients
-    # how to tell an ingredient section: newline, 'ingredients', >=1 occurrences of number-space->=1 characters-newline
-    name = /(.+)\r\n/x
-    ingredient_heading = /(\r\n)* ingredients/ix 
-    ingredient_list = /\n([\d\.\/]+\s.+)/x
-    directions = /((.|\n)+)/x
-    match = contents.match(/#{name} #{ingredient_heading} #{ingredient_list} #{directions}/x)
-    self.name, self.contents = match[1..2]    
-  end
-  
-  def parse_no_ingredients
-    match = contents.match(/(.+)(\r\n(.|\n)+)/)
-    self.name, self.contents = match[1..2]
-  end
-  
-  def parse_ingredients
-    self.ingredients = Ingredient.parse(ingredient_list)
+    @components
   end
   
   def scale(new_serving)
     new_serving ||= serving
-    copy = self.clone
-    copy.ingredients.clear
-    ratio = (new_serving.to_f / serving).to_f
+    copy = self.dup
+    ratio = new_serving.to_f / serving
     ingredients.each do |i|
-      i.amount = ratio * i.amount
-      copy.ingredients << i
+      temp_i = i.dup
+      temp_i.amount = ratio * i.amount
+      copy.ingredients << temp_i
     end
     copy
   end

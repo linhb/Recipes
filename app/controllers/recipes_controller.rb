@@ -1,9 +1,6 @@
-require 'nokogiri'
-
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.search(params[:search]).paginate :page => params[:page], :per_page => 30 
-    @recipe = Recipe.new
+    @recipes = Recipe.search(params[:search]).paginate page: params[:page], per_page: 30 
   end
   
   def show
@@ -15,25 +12,24 @@ class RecipesController < ApplicationController
   end
 
   def create
-    # unless ((url = params[:recipe][:contents]) =~ /http:\/\//).nil?
-      # raise url.inspect
-      # body = Nokogiri::HTML(open(""))
-      # raise body.inspect
-    # else
+    if params[:unparsed_contents]
+      @recipe = Recipe.new.parse(params[:unparsed_contents])
+    else
       @recipe = Recipe.new(params[:recipe])
-      if @recipe.save
-        flash[:success] = "Recipe saved"
-        redirect_to recipes_path
-      else
-        flash.now[:error] = @recipe.errors.full_messages.join("\n")
-        render :action => 'index'
-      end
+    end
+    if @recipe.save
+      flash[:success] = "Recipe saved"
+      redirect_to recipes_path
+    else
+      flash.now[:error] = @recipe.errors.full_messages.join("\n")
+      render action: 'index'
+    end
   end
 
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update_attributes(params[:recipe])
-      redirect_to(recipes_path, :notice => 'Recipe was successfully updated.') 
+      redirect_to(recipes_path, notice: 'Recipe was successfully updated.') 
     end
   end
 
