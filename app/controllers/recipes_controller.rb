@@ -5,6 +5,9 @@ class RecipesController < ApplicationController
   
   def show
     @recipe = Recipe.find(params[:id]).scale(params[:serving])
+    unless @recipe.valid?
+      flash[:error] = @recipe.errors.full_messages.join("<br />").html_safe # TODO move HTML logic into helper
+    end
   end
 
   def edit

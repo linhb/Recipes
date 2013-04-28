@@ -1,10 +1,11 @@
 class Recipe < ActiveRecord::Base
   validates :name, :contents, presence: true
-  validates :serving, numericality: true, presence: true
+  validates :serving, numericality: {greater_than: 0}, presence: true
   
   attr_accessor :ingredient_list
     
   has_many :ingredients
+  validates_associated :ingredients, unless: "serving > 0"
    
   default_scope order: 'created_at DESC'
   
@@ -35,6 +36,7 @@ class Recipe < ActiveRecord::Base
   def scale(new_serving)
     new_serving ||= serving
     copy = self.dup
+    copy.serving = new_serving
     ratio = new_serving.to_f / serving
     ingredients.each do |i|
       temp_i = i.dup
