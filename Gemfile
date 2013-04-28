@@ -21,7 +21,6 @@ gem 'sqlite3'
 gem 'nokogiri'
 gem 'will_paginate'
 gem 'RedCloth'
-gem 'rspec'
 # gem 'sqlite3-ruby', require: 'sqlite3'
 # gem 'aws-s3', require: 'aws/s3'
 
@@ -32,4 +31,6 @@ group :development, :test do
   # gem 'ruby-debug'
   # gem 'hirb'
 #   gem 'webrat'
+  gem 'rspec'
+  gem 'rspec-rails'
 end
