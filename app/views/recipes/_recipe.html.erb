@@ -5,7 +5,7 @@
       <%= recipe.name.titleize %>
     </div>
     <% if (ingredients = recipe.ingredients).present? %>
-      <%= form_tag(recipe_path(recipe.id || params[:id]), :method => :get) do %>
+      <%= form_tag(recipe_path(recipe.try(:id) || params[:id]), method: :get) do %> <%# a scaled recipe doesn't exist in the DB, so has to use params[:id] %>
         Servings: 
         <%= text_field_tag :serving, params[:serving] || recipe.serving %>        
         <%= submit_tag "Scale" %>
@@ -20,7 +20,7 @@
     <% if recipe.id %>
       <p>
         <%= link_to 'Edit', edit_recipe_path(recipe) %> | 
-        <%= link_to raw("&times;"), recipe, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to raw("&times;"), recipe, confirm: 'Are you sure?', method: :delete %>
       </p>
     <% end %>
   </div>
