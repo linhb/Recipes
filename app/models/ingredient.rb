@@ -2,8 +2,8 @@ class Ingredient < ActiveRecord::Base
 
   belongs_to :recipe
 
-  validates :name, presence: true
-  validates :amount, numericality: {greater_than: 0}
+  validates :name, :recipe_id, presence: true
+  validates :amount, presence: true, numericality: {greater_than: 0}
   
   def self.parse(ingredient_list)
     ingredient_lines = ingredient_list.lines.delete_if &:empty?

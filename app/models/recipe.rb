@@ -4,7 +4,7 @@ class Recipe < ActiveRecord::Base
   
   attr_accessor :ingredient_list
     
-  has_many :ingredients
+  has_many :ingredients, dependent: :destroy
   validates_associated :ingredients, unless: "serving > 0"
    
   default_scope order: 'created_at DESC'
