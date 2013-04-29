@@ -13,5 +13,12 @@ describe Ingredient do
       list.size.should == 4
       list[2].amount.should == 2.5
     end
+    it "should catch invalid ingredients" do 
+      Ingredient.new.should_not be_valid
+      Ingredient.new(name: "tasty food").should_not be_valid
+      Ingredient.new(name: "tasty food", amount: 1).should_not be_valid
+      Ingredient.new(name: "tasty food", amount: -1, recipe_id: 1).should_not be_valid
+      Ingredient.new(name: "tasty food", amount: 1, recipe_id: 1).should be_valid
+    end
   end
 end
