@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427214714) do
+ActiveRecord::Schema.define(:version => 20130519225235) do
 
   create_table "ingredients", :force => true do |t|
     t.decimal  "amount"
@@ -27,7 +27,11 @@ ActiveRecord::Schema.define(:version => 20130427214714) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.decimal  "serving",    :default => 4.0
+    t.decimal  "serving",            :default => 4.0
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
 end

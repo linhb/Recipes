@@ -3,6 +3,9 @@ class Recipe < ActiveRecord::Base
   validates :serving, numericality: {greater_than: 0}, presence: true
   
   attr_accessor :ingredient_list
+
+  attr_accessible :photo
+  has_attached_file :photo, styles: {medium: "300x300>", thumb: "100x100?"}, default_url: "/images/:style/cupcake.png"
     
   has_many :ingredients, dependent: :destroy
   validates_associated :ingredients, unless: "serving > 0"
